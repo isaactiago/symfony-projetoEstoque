@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acessar{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/login.css') }}">
+{% endblock %}
+
+{% block body %}
+<main class="d-flex align-items-center py-4 bg-body-tertiary">
+    <div class="form-signin w-100 m-auto">
+        <form method="POST">
+            <div class="d-flex align-items-center mb-4">
+                <img class="p-0" src="/assets/images/logotipo.svg" width="72" height="57">
+
+                <h1 class="h3 fw-normal my-0 ms-2">MS Code - Estoque</h1>
+            </div>
+
+             {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                
+            {% endif %}
+
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+
+            <div class="form-floating">
+               
+                <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus placeholder="email">
+                 <label for="username">Email</label
+            </div>
+
+            <div class="form-floating">
+                <label for="password">Password</label>
+                <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required placeholder="Password">
+                <a href="/register">nao tem uma conta ?</a>
+            </div>
+
+            
+
+            <input type="hidden" name="_csrf_token"
+                value="{{ csrf_token('authenticate') }}"
+            >
+
+            <button class="btn btn-primary w-100 py-2" type="submit">Acessar</button>
+        
+            <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
+        </form>
+    </div>
+<div>
+{% endblock %}
