@@ -46,15 +46,11 @@ class CadastrarController extends AbstractController
         $categoria = new Categoria();
         $categoria->setNome($nomeCategoria);
 
-      
+        $this->categoriaRepository->salvar($categoria);
+           
+        return $this->redirectToRoute("listar_categorias");
 
-        if($categoria){
-            $this->categoriaRepository->salvar($categoria);
-            $this->redirect('categorias');
-        }
-      
-
-        return new Response();
+       
     }
     
 }
