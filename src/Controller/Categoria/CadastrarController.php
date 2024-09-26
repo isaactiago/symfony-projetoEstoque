@@ -2,6 +2,7 @@
 
 namespace App\Controller\Categoria;
 
+use App\Form\CategoriaType;
 use App\Entity\Categoria;
 use App\Repository\CategoriaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
