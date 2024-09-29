@@ -7,7 +7,7 @@
       <div class="mb-4">
         <h1>Produtos</h1>
         <div>
-          <a href="/novo_produto" class="btn btn-primary"><i class="bi bi-plus"></i>Novo produto</a>
+          <a href="/produtos/cadastrar" class="btn btn-primary"><i class="bi bi-plus"></i>Novo produto</a>
         </div>
       </div>
 
@@ -30,15 +30,15 @@
                     <th scope='row'>{{ valor.id }}</th>
                     <td>{{ valor.nome }}</td>
                     <td>{{ valor.descricao }}</td>
-                  {#   <td>{{ categoria_id_id }}</td>  #}
-                   {#  <td>{{ valor.data_cadastro }}</td> #}
-                    {# <td>{{ valor.quantidade_inicial}}</td> #}
-                    {#  <td>{{ valor.quantidade_disponiviel }}</td>  #}
+                    <td>{{ valor.categoria.id }}</td>  
+                    <td>{{ valor.dataCadastro|date("d/m/Y") }}</td> 
+                    <td>{{ valor.quantidadeInicial}}</td> 
+                    <td>{{ valor.quantidadeDisponivel }}</td>  
                     <td>{{ valor.valor }}</td> 
                     <td class='col-2 text-align-right'>
                       <a href='/aumentar?id={$valor['id']}' class='btn btn-primary btn-sm'><i class='bi bi-plus'></i></a>
-                      <a href='/editarProduto?id={$valor['id']}&nome={$valor['nome']}' class='btn btn-secondary btn-sm'><i class='bi bi-pencil'></i></a>
-                      <a href='/removerProduto?id={$valor['id']}' class='btn btn-danger btn-sm'><i class='bi bi-x'></i></a>
+                      <a href="{{ path('produto_editar', {id: valor.id}) }}" class='btn btn-secondary btn-sm'><i class='bi bi-pencil'></i></a>
+                      <a href='{{ path('produto_excluir', {id: valor.categoria.id}) }}' class='btn btn-danger btn-sm'><i class='bi bi-x'></i></a>
                       <a href='/diminuir?id={$valor['id']}' class='btn btn-primary btn-sm'>Vender</a>
                     </td>
                   </tr> 
