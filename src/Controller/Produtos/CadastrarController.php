@@ -21,7 +21,7 @@ class CadastrarController extends AbstractController
     public function salvar(Request $request, CadastrarProdutoService $cadastrarProdutoService): Response
     {
         $dados = $request->request->all();//pegar todos os campos da requisição
-        $cadastrarProdutoService->salvar($dados);
+        $cadastrarProdutoService->salvar(dados : $dados);
        
         return $this->redirectToRoute("listar_produtos");
     }

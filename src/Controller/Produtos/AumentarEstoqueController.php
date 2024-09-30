@@ -1,28 +1,25 @@
-<?php
+<?php 
 
 namespace App\Controller\Produtos;
 
 use App\Repository\ProdutoRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\AumentarEstoqueService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ExcluirController extends AbstractController
+class AumentarEstoqueController extends AbstractController
 {
-    #[Route('produtos/excluir/{id}', name: 'produto_excluir')]
-    public function excluir(
+
+    #[Route("produtos/adicionar/{id}" ,name:"produto_adicionar")]
+    public function aumentarEstoque(
         int $id,
-        EntityManagerInterface $em,
         ProdutoRepository $produtoRepository,
-    ): Response 
+        AumentarEstoqueService $aumentarEstoqueService,
+    ) : Response 
     {
         $produto = $produtoRepository->find($id);
-
-     
-        $em->remove($produto);
-        $em->flush();
-
+        $aumentarEstoqueService->aumentarEstoque(produto: $produto);
         return $this->redirectToRoute("listar_produtos");
     }
 }
