@@ -11,7 +11,6 @@ class  DiminuirEstoqueService
    private EntityManagerInterface $em;
   
    public function __construct(
-        ProdutoRepository $produtoRepository,
         EntityManagerInterface $em,
    )
    {
